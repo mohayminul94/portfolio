@@ -65,19 +65,16 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open, restore when closed
+  // Lock body scroll cleanly when mobile menu is open, restore when closed
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
     } else {
       document.body.style.overflow = "";
-      document.body.style.touchAction = "";
     }
 
     return () => {
       document.body.style.overflow = "";
-      document.body.style.touchAction = "";
     };
   }, [mobileMenuOpen]);
 
@@ -86,7 +83,6 @@ export default function Navbar() {
     e.preventDefault();
     setMobileMenuOpen(false);
     document.body.style.overflow = "";
-    document.body.style.touchAction = "";
 
     const targetId = href.replace("#", "");
     const targetElement = document.getElementById(targetId);
@@ -104,111 +100,115 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 h-[68px] transition-all duration-300 flex items-center ${
-        isScrolled || mobileMenuOpen
-          ? "bg-[#202734]/95 backdrop-blur-md border-b border-[#36415A] shadow-md shadow-black/15"
-          : "bg-[#202734]/70 backdrop-blur-sm border-b border-transparent"
-      }`}
-    >
-      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => handleNavClick(e, "#home")}
-            className="group flex items-center gap-1.5 text-lg sm:text-xl font-bold font-mono tracking-tight text-[#F8FAFC] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B7D894] rounded px-1 shrink-0"
-            aria-label="Rayhan portfolio home"
-          >
-            <span className="w-2.5 h-2.5 rounded-sm bg-[#B7D894] inline-block transition-transform duration-300 group-hover:rotate-45"></span>
-            <span>rayhan</span>
-            <span className="text-[#B7D894]">.dev</span>
-          </a>
-
-          {/* Desktop Navigation */}
-          <nav
-            className="hidden md:flex items-center gap-1 lg:gap-2"
-            aria-label="Main Navigation"
-          >
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.href.replace("#", "");
-              return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`relative px-3.5 py-1.5 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                    isActive
-                      ? "text-[#E0F8C7] font-semibold"
-                      : "text-[#CBD5E1] hover:text-[#F8FAFC] hover:bg-[#36415A]/40"
-                  }`}
-                >
-                  {link.name}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-[#B7D894] rounded-full" />
-                  )}
-                </a>
-              );
-            })}
-          </nav>
-
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-3">
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 h-[68px] transition-all duration-300 flex items-center ${
+          isScrolled || mobileMenuOpen
+            ? "bg-[#202734]/95 backdrop-blur-md border-b border-[#36415A] shadow-md shadow-black/15"
+            : "bg-[#202734]/80 backdrop-blur-sm border-b border-transparent"
+        }`}
+      >
+        <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
             <a
-              href={personalInfo.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium bg-[#36415A] text-[#E0F8C7] hover:text-[#F8FAFC] border border-[#CBD5E1]/15 hover:border-[#B7D894]/40 transition-all duration-200"
+              href="#home"
+              onClick={(e) => handleNavClick(e, "#home")}
+              className="group flex items-center gap-1.5 text-lg sm:text-xl font-bold font-mono tracking-tight text-[#F8FAFC] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B7D894] rounded px-1 shrink-0"
+              aria-label="Rayhan portfolio home"
             >
-              <FileText className="w-4 h-4 text-[#B7D894]" />
-              <span>Resume</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#94A3B8]" />
+              <span className="w-2.5 h-2.5 rounded-sm bg-[#B7D894] inline-block transition-transform duration-300 group-hover:rotate-45"></span>
+              <span>rayhan</span>
+              <span className="text-[#B7D894]">.dev</span>
             </a>
 
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, "#contact")}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold bg-[#B7D894] text-[#131924] hover:bg-[#E0F8C7] transition-all duration-200 shadow-sm hover:shadow-[#B7D894]/20 hover:shadow-md active:scale-95"
+            {/* Desktop Navigation */}
+            <nav
+              className="hidden md:flex items-center gap-1 lg:gap-2"
+              aria-label="Main Navigation"
             >
-              <span>Let&apos;s Talk</span>
-              <MessageSquare className="w-4 h-4 text-[#131924]" />
-            </a>
-          </div>
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.replace("#", "");
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`relative px-3.5 py-1.5 rounded-lg text-sm font-medium transition-colors duration-200 ${
+                      isActive
+                        ? "text-[#E0F8C7] font-semibold"
+                        : "text-[#CBD5E1] hover:text-[#F8FAFC] hover:bg-[#36415A]/40"
+                    }`}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-[#B7D894] rounded-full" />
+                    )}
+                  </a>
+                );
+              })}
+            </nav>
 
-          {/* Mobile Right Controls: Clean, Non-wrapping layout */}
-          <div className="flex md:hidden items-center gap-2 shrink-0">
-            <a
-              href={personalInfo.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-[#36415A] text-[#E0F8C7] border border-[#B7D894]/30 flex items-center gap-1 active:scale-95 transition-transform"
-              aria-label="Open resume in Google Drive"
-            >
-              <FileText className="w-3.5 h-3.5 text-[#B7D894]" />
-              <span>Resume</span>
-            </a>
+            {/* Desktop Actions */}
+            <div className="hidden md:flex items-center gap-3">
+              <a
+                href={personalInfo.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium bg-[#36415A] text-[#E0F8C7] hover:text-[#F8FAFC] border border-[#CBD5E1]/15 hover:border-[#B7D894]/40 transition-all duration-200"
+              >
+                <FileText className="w-4 h-4 text-[#B7D894]" />
+                <span>Resume</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#94A3B8]" />
+              </a>
 
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-[#36415A] text-[#F8FAFC] hover:text-[#B7D894] border border-[#CBD5E1]/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B7D894] active:scale-95 transition-transform"
-              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-5 h-5 text-[#B7D894]" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, "#contact")}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold bg-[#B7D894] text-[#131924] hover:bg-[#E0F8C7] transition-all duration-200 shadow-sm hover:shadow-[#B7D894]/20 hover:shadow-md active:scale-95"
+              >
+                <span>Let&apos;s Talk</span>
+                <MessageSquare className="w-4 h-4 text-[#131924]" />
+              </a>
+            </div>
+
+            {/* Mobile Right Controls: Clean, Non-wrapping layout */}
+            <div className="flex md:hidden items-center gap-2 shrink-0">
+              <a
+                href={personalInfo.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-[#36415A] text-[#E0F8C7] border border-[#B7D894]/30 flex items-center gap-1 active:scale-95 transition-transform"
+                aria-label="Open resume in Google Drive"
+              >
+                <FileText className="w-3.5 h-3.5 text-[#B7D894]" />
+                <span>Resume</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen((prev) => !prev)}
+                className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#36415A] text-[#F8FAFC] hover:text-[#B7D894] border border-[#CBD5E1]/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B7D894] active:scale-95 transition-all cursor-pointer select-none"
+                aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-navigation-drawer"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5 text-[#B7D894]" />
+                ) : (
+                  <Menu className="w-5 h-5" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Drawer Menu Overlay */}
+      {/* Mobile Drawer Menu: SIBLING TO HEADER so position:fixed is relative to VIEWPORT! */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden fixed top-[68px] inset-x-0 bottom-0 bg-[#202734]/98 backdrop-blur-2xl border-t border-[#36415A] z-40 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200"
+          id="mobile-navigation-drawer"
+          className="md:hidden fixed top-[68px] inset-x-0 bottom-0 z-40 bg-[#202734] border-t border-[#36415A] overflow-y-auto"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation Drawer"
@@ -288,6 +288,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
