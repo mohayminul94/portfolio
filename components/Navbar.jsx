@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { navLinks, personalInfo } from "@/data/portfolioData";
-import { Menu, X, ArrowUpRight, MessageSquare } from "lucide-react";
+import { Menu, X, ArrowUpRight, MessageSquare, FileText } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -103,8 +103,19 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Let's Talk CTA */}
+          {/* Actions */}
           <div className="hidden md:flex items-center gap-3">
+            <a
+              href={personalInfo.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium bg-[#36415A] text-[#E0F8C7] hover:text-[#F8FAFC] border border-[#CBD5E1]/15 hover:border-[#B7D894]/40 transition-all duration-200"
+            >
+              <FileText className="w-4 h-4 text-[#B7D894]" />
+              <span>Resume</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#94A3B8]" />
+            </a>
+
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, "#contact")}
@@ -117,6 +128,15 @@ export default function Navbar() {
 
           {/* Mobile Hamburger Button */}
           <div className="flex md:hidden items-center gap-2">
+            <a
+              href={personalInfo.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-[#36415A] text-[#E0F8C7] border border-[#B7D894]/30 flex items-center gap-1"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#B7D894]" />
+              <span>Resume</span>
+            </a>
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, "#contact")}
@@ -173,6 +193,19 @@ export default function Navbar() {
                   </a>
                 );
               })}
+
+              <a
+                href={personalInfo.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-4 py-3 rounded-xl text-lg font-medium text-[#E0F8C7] bg-[#36415A]/70 border border-[#B7D894]/30 hover:bg-[#36415A] transition-colors mt-2"
+              >
+                <span className="flex items-center gap-2.5">
+                  <FileText className="w-5 h-5 text-[#B7D894]" />
+                  <span>Resume / CV</span>
+                </span>
+                <ArrowUpRight className="w-4 h-4 text-[#B7D894]" />
+              </a>
             </div>
 
             <div className="pt-6 border-t border-[#36415A] flex flex-col gap-4 mb-8">

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { personalInfo } from "@/data/portfolioData";
-import { ArrowUp, Heart } from "lucide-react";
+import { ArrowUp, Heart, FileText } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "./Icons";
 
 export default function Footer() {
@@ -35,8 +35,19 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
+          {/* Social & Resume Links */}
+          <div className="flex items-center gap-3">
+            <a
+              href={personalInfo.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-1.5 px-3 rounded-lg bg-[#36415A] text-[#CBD5E1] hover:text-[#B7D894] hover:bg-[#36415A]/80 transition-colors flex items-center gap-1.5 text-xs font-mono"
+              aria-label="View Resume"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#B7D894]" />
+              <span>Resume</span>
+            </a>
+
             <a
               href={personalInfo.github}
               target="_blank"

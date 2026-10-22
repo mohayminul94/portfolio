@@ -2,7 +2,7 @@
 
 import { personalInfo } from "@/data/portfolioData";
 import HeroVisual from "./HeroVisual";
-import { ArrowDown, Mail, ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowDown, Mail, ArrowUpRight, Sparkles, FileText } from "lucide-react";
 
 export default function Hero() {
   const handleScrollTo = (e, sectionId) => {
@@ -46,7 +46,7 @@ export default function Hero() {
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto">
+            <div className="flex flex-wrap items-center gap-3.5 mb-10 w-full sm:w-auto">
               <a
                 href="#projects"
                 onClick={(e) => handleScrollTo(e, "projects")}
@@ -57,9 +57,20 @@ export default function Hero() {
               </a>
 
               <a
+                href={personalInfo.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-base font-semibold bg-[#36415A] text-[#E0F8C7] hover:text-[#F8FAFC] hover:bg-[#36415A]/80 border border-[#B7D894]/30 hover:border-[#B7D894] transition-all duration-200"
+              >
+                <FileText className="w-4 h-4 text-[#B7D894]" />
+                <span>Resume</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#94A3B8]" />
+              </a>
+
+              <a
                 href="#contact"
                 onClick={(e) => handleScrollTo(e, "contact")}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-medium bg-[#36415A] text-[#F8FAFC] hover:bg-[#36415A]/80 border border-[#CBD5E1]/20 hover:border-[#B7D894]/50 transition-all duration-200"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-base font-medium bg-[#202734] text-[#CBD5E1] hover:text-[#F8FAFC] hover:bg-[#36415A]/50 border border-[#CBD5E1]/20 hover:border-[#B7D894]/50 transition-all duration-200"
               >
                 <span>Let&apos;s Connect</span>
                 <Mail className="w-4 h-4 text-[#B7D894]" />

@@ -13,6 +13,7 @@ export const personalInfo = {
   email: "mohayminul94@gmail.com",
   github: "https://github.com/mohayminul94",
   linkedin: "https://www.linkedin.com/in/mohayminulislamrayhan/",
+  resumeUrl: "https://drive.google.com/drive/folders/16JBLjemOd59g0vYX-dpLFoBWe1SWKwQ5?usp=drive_link",
   tagline: "Building Digital Experiences That Feel Right.",
   bio: "I'm Rayhan, a frontend developer and CSE student passionate about building clean, responsive, and user-focused web experiences with modern frontend technologies.",
   aboutParagraph: "I'm a Computer Science and Engineering student at Dhaka International University with a strong interest in frontend development. I enjoy transforming ideas and designs into responsive, accessible, and practical web applications. I'm continuously improving my skills through hands-on projects and learning modern web technologies.",

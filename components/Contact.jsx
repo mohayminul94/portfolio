@@ -13,6 +13,7 @@ import {
   AlertCircle,
   ArrowUpRight,
   Sparkles,
+  FileText,
 } from "lucide-react";
 
 export default function Contact() {
@@ -137,6 +138,32 @@ export default function Contact() {
                 </button>
               </div>
             </div>
+
+            {/* Resume Card */}
+            <a
+              href={personalInfo.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-5 rounded-2xl bg-[#36415A] border border-[#B7D894]/30 hover:border-[#B7D894] transition-all group flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-lg bg-[#202734] text-[#B7D894]">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs font-mono text-[#B7D894] uppercase tracking-wide">
+                    Curriculum Vitae
+                  </div>
+                  <div className="text-sm font-bold text-[#F8FAFC] group-hover:text-[#B7D894] transition-colors">
+                    View Official Resume
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs font-mono text-[#E0F8C7] px-3 py-1.5 rounded-lg bg-[#202734] border border-[#B7D894]/25">
+                <span>Drive</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#B7D894]" />
+              </div>
+            </a>
 
             {/* Social Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

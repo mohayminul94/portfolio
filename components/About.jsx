@@ -1,7 +1,17 @@
 "use client";
 
 import SectionHeader from "./SectionHeader";
-import { GraduationCap, Code2, Server, ArrowRight, BookOpen, Compass } from "lucide-react";
+import { personalInfo } from "@/data/portfolioData";
+import {
+  GraduationCap,
+  Code2,
+  Server,
+  ArrowRight,
+  BookOpen,
+  Compass,
+  FileText,
+  ArrowUpRight,
+} from "lucide-react";
 
 export default function About() {
   const cards = [
@@ -108,6 +118,19 @@ export default function About() {
                   Node.js &amp; MongoDB
                 </span>
               </div>
+            </div>
+
+            <div className="mt-5 pt-4 border-t border-[#202734]/80">
+              <a
+                href={personalInfo.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-[#B7D894] text-[#131924] hover:bg-[#E0F8C7] transition-all duration-200"
+              >
+                <FileText className="w-4 h-4 text-[#131924]" />
+                <span>View Official Resume / CV</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#131924]" />
+              </a>
             </div>
           </div>
         </div>
