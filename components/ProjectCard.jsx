@@ -1,30 +1,31 @@
 "use client";
 
-import { ExternalLink, ArrowUpRight, ShoppingBag, Dumbbell, Calendar, CheckCircle } from "lucide-react";
+import Image from "next/image";
+import { ExternalLink, ArrowUpRight, CheckCircle2, Sparkles } from "lucide-react";
 import { GitHubIcon } from "./Icons";
 
 export default function ProjectCard({ project, index }) {
   const isEven = index % 2 === 0;
 
   return (
-    <article className="group bg-[#36415A] border border-[#36415A] hover:border-[#B7D894]/40 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-black/25">
+    <article className="group bg-[#36415A] border border-[#36415A] hover:border-[#B7D894]/40 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-black/30">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-        {/* Project Browser Mockup Preview */}
+        {/* Project Browser Mockup Preview with Actual Project Picture */}
         <div
           className={`lg:col-span-7 bg-[#202734] p-5 sm:p-7 flex flex-col justify-center border-b lg:border-b-0 ${
             isEven ? "lg:border-r" : "lg:order-2 lg:border-l"
           } border-[#36415A]`}
         >
           {/* Browser Window Frame */}
-          <div className="rounded-xl overflow-hidden border border-[#36415A] bg-[#202734] shadow-inner">
+          <div className="rounded-xl overflow-hidden border border-[#36415A] bg-[#202734] shadow-xl group/browser">
             {/* Browser URL Bar */}
-            <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#36415A]/60 border-b border-[#36415A] text-xs font-mono">
+            <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#36415A]/80 border-b border-[#36415A] text-xs font-mono">
               <div className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#CBD5E1]/20"></span>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#CBD5E1]/20"></span>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#B7D894]"></span>
               </div>
-              <div className="flex items-center gap-1 px-3 py-1 rounded bg-[#202734] text-[#CBD5E1] text-[11px] truncate max-w-[200px] sm:max-w-[260px]">
+              <div className="flex items-center gap-1 px-3 py-1 rounded bg-[#202734] text-[#CBD5E1] text-[11px] truncate max-w-[200px] sm:max-w-[280px]">
                 <span className="text-[#B7D894]">https://</span>
                 <span className="truncate">{project.browserMockup.headerTitle}</span>
               </div>
@@ -39,140 +40,51 @@ export default function ProjectCard({ project, index }) {
               </a>
             </div>
 
-            {/* Custom Interactive Mockup Content */}
-            <div className="p-4 sm:p-6 bg-[#202734]/90 min-h-[220px] flex flex-col justify-between select-none">
-              {project.browserMockup.type === "ecommerce" && (
-                <div className="space-y-4">
-                  {/* Mockup Store Header */}
-                  <div className="flex items-center justify-between border-b border-[#36415A]/70 pb-3">
-                    <div className="flex items-center gap-2">
-                      <ShoppingBag className="w-4 h-4 text-[#B7D894]" />
-                      <span className="font-bold text-sm tracking-tight text-[#F8FAFC]">
-                        Bazar-Ghor
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[11px] font-mono">
-                      <span className="px-2 py-0.5 rounded bg-[#36415A] text-[#E0F8C7]">
-                        Cart: 2 items
-                      </span>
-                    </div>
-                  </div>
+            {/* Actual Project Image Viewport */}
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative block overflow-hidden bg-[#1a202c] aspect-[16/10] sm:aspect-[16/9] focus:outline-none"
+              aria-label={`Visit live demo for ${project.title}`}
+            >
+              {/* Project Picture Image */}
+              <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-6 bg-gradient-to-b from-[#202734] to-[#171d26]">
+                <Image
+                  src={project.image}
+                  alt={project.imageAlt || `${project.title} project screenshot`}
+                  width={600}
+                  height={400}
+                  className="max-h-full max-w-full object-contain rounded-lg shadow-md transition-transform duration-500 group-hover:scale-105"
+                  priority={index === 0}
+                />
 
-                  {/* Mockup Product Grid */}
-                  <div className="grid grid-cols-2 gap-2.5">
-                    <div className="p-2.5 rounded-lg bg-[#36415A]/60 border border-[#CBD5E1]/10">
-                      <div className="h-14 rounded bg-[#202734] flex items-center justify-center text-xs text-[#94A3B8] font-mono mb-2">
-                        Product Item 01
-                      </div>
-                      <div className="text-xs font-semibold text-[#F8FAFC] truncate">
-                        Everyday Essentials
-                      </div>
-                      <div className="flex items-center justify-between mt-1">
-                        <span className="text-xs font-bold text-[#B7D894]">৳ 450</span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#202734] text-[#E0F8C7]">
-                          Add +
-                        </span>
-                      </div>
-                    </div>
+                {/* Subtle overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#202734]/80 via-transparent to-transparent pointer-events-none" />
 
-                    <div className="p-2.5 rounded-lg bg-[#36415A]/60 border border-[#CBD5E1]/10">
-                      <div className="h-14 rounded bg-[#202734] flex items-center justify-center text-xs text-[#94A3B8] font-mono mb-2">
-                        Product Item 02
-                      </div>
-                      <div className="text-xs font-semibold text-[#F8FAFC] truncate">
-                        Fresh Organics
-                      </div>
-                      <div className="flex items-center justify-between mt-1">
-                        <span className="text-xs font-bold text-[#B7D894]">৳ 820</span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#202734] text-[#E0F8C7]">
-                          Add +
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                {/* Live Floating Tag over Image */}
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono">
+                  <span className="px-2.5 py-1 rounded-md bg-[#202734]/90 backdrop-blur-md text-[#E0F8C7] border border-[#B7D894]/30 shadow-md flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#B7D894] animate-pulse"></span>
+                    <span className="truncate">{project.browserMockup.tagline}</span>
+                  </span>
+
+                  <span className="hidden sm:inline-flex px-2 py-0.5 rounded bg-[#36415A]/90 backdrop-blur-md text-[#94A3B8] text-[11px] border border-[#CBD5E1]/10">
+                    Click to Open ↗
+                  </span>
                 </div>
-              )}
-
-              {project.browserMockup.type === "fitness" && (
-                <div className="space-y-4">
-                  {/* Mockup Fitness Header */}
-                  <div className="flex items-center justify-between border-b border-[#36415A]/70 pb-3">
-                    <div className="flex items-center gap-2">
-                      <Dumbbell className="w-4 h-4 text-[#B7D894]" />
-                      <span className="font-bold text-sm tracking-tight text-[#F8FAFC]">
-                        FitLog Planner
-                      </span>
-                    </div>
-                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#B7D894]/20 text-[#B7D894]">
-                      Week 4 · Active
-                    </span>
-                  </div>
-
-                  {/* Mockup Workout Sessions */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between p-2 rounded-lg bg-[#36415A]/60 border border-[#CBD5E1]/10 text-xs">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-3.5 h-3.5 text-[#B7D894]" />
-                        <span className="font-medium text-[#F8FAFC]">
-                          Upper Body Push Day
-                        </span>
-                      </div>
-                      <span className="text-[11px] font-mono text-[#E0F8C7]">
-                        4 sets · 12 reps
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between p-2 rounded-lg bg-[#36415A]/60 border border-[#CBD5E1]/10 text-xs">
-                      <div className="flex items-center gap-2">
-                        <span className="w-3.5 h-3.5 rounded-full border border-[#B7D894] inline-block"></span>
-                        <span className="font-medium text-[#F8FAFC]">
-                          Core &amp; Mobility Circuit
-                        </span>
-                      </div>
-                      <span className="text-[11px] font-mono text-[#94A3B8]">
-                        30 mins · Target
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {project.browserMockup.type === "conference" && (
-                <div className="space-y-4">
-                  {/* Mockup Conference Header */}
-                  <div className="flex items-center justify-between border-b border-[#36415A]/70 pb-3">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-[#B7D894]" />
-                      <span className="font-bold text-sm tracking-tight text-[#F8FAFC]">
-                        DevStack Conf
-                      </span>
-                    </div>
-                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#36415A] text-[#E0F8C7]">
-                      Annual Tech Summit
-                    </span>
-                  </div>
-
-                  {/* Conference Speaker Schedule Cards */}
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="p-2.5 rounded-lg bg-[#36415A]/60 border border-[#CBD5E1]/10">
-                      <div className="text-[10px] font-mono text-[#B7D894]">10:00 AM</div>
-                      <div className="font-semibold text-[#F8FAFC] truncate">Keynote Speech</div>
-                      <div className="text-[11px] text-[#94A3B8] truncate">Future of Web</div>
-                    </div>
-                    <div className="p-2.5 rounded-lg bg-[#36415A]/60 border border-[#CBD5E1]/10">
-                      <div className="text-[10px] font-mono text-[#E0F8C7]">02:30 PM</div>
-                      <div className="font-semibold text-[#F8FAFC] truncate">Frontend UI Lab</div>
-                      <div className="text-[11px] text-[#94A3B8] truncate">Interactive Session</div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Bottom bar inside mockup */}
-              <div className="mt-3 pt-3 border-t border-[#36415A]/50 flex items-center justify-between text-[11px] font-mono text-[#94A3B8]">
-                <span>Status: Verified &amp; Hosted</span>
-                <span className="text-[#B7D894]">Responsive Viewport</span>
               </div>
+            </a>
+
+            {/* Bottom status strip inside mockup */}
+            <div className="px-4 py-2 bg-[#202734]/95 border-t border-[#36415A] flex items-center justify-between text-[11px] font-mono text-[#94A3B8]">
+              <span className="flex items-center gap-1.5 text-[#B7D894]">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Verified Hosted Project</span>
+              </span>
+              <span className="text-[#E0F8C7]">
+                {project.browserMockup.accentTag}
+              </span>
             </div>
           </div>
         </div>
